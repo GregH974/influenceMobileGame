@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_for :users
+  root to: "home#index"
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  # TODO : to complete template
+  get   '404',                              to: 'errors#not_found',               as: 'not_found'
+  get   '503',                              to: 'errors#forbidden',               as: 'forbidden'
+  get   '500',                              to: 'errors#internal_server_error',   as: 'internal_server_error'
 end
