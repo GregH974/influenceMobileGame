@@ -1,27 +1,34 @@
+ARG RUBY_VERSION
 # Use the official Ruby image as a base image
-FROM ruby:3.2.1
+FROM ruby:$RUBY_VERSION
+
+ARG USER_ID=0
+ARG USER_NAME=root
+ARG TZ=America/Toronto
 
 # Install dependencies
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 
-# Set the working directory
-WORKDIR /app
+RUN if ! id -u $USER_NAME; then adduser -u $USER_ID $USER_NAME --force-badname; fi
 
-# Copy the Gemfile and Gemfile.lock
-COPY Gemfile /app/Gemfile
-COPY Gemfile.lock /app/Gemfile.lock
+ENV APP_HOME /app
+RUN mkdir $APP_HOME && chown -R $USER_NAME:$USER_NAME $APP_HOME
+WORKDIR $APP_HOME
 
-# Install gems
-RUN bundle install
+ADD Gemfile* $APP_HOME/
+RUN chown -R $USER_NAME:$USER_NAME $APP_HOME
 
-# Copy the rest of the application code
-COPY . /app
+# The commands below will be ran as the app user
+USER $USER_NAME
 
-# Precompile assets
-RUN bundle exec rake assets:precompile
+RUN gem install bundler -v '~>2'
+RUN bundle install --jobs $(nproc)
 
-# Expose port 3000 to the Docker host
+# Add a script to be executed every time the container starts.
+COPY --chmod=0755 entrypoint.sh /usr/bin/
+ENTRYPOINT ["entrypoint.sh"]
+
 EXPOSE 3000
 
-# Start the Rails server
+# Start the main process.
 CMD ["rails", "server", "-b", "0.0.0.0"]
