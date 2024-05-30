@@ -65,6 +65,9 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  # Gives letter_opener an interface for browsing sent emails.
+  gem 'letter_opener_web', '~> 3.0'
 end
 
 group :test do
