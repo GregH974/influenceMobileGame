@@ -48,6 +48,8 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem 'simple_form'
+
 # Flexible authentication solution for Rails with Warden
 gem "devise", "~> 4.9"
 
@@ -60,6 +62,7 @@ group :development, :test do
 
   gem "factory_bot_rails"
   gem "rspec-rails"
+  gem 'faker' # A library for generating fake data such as names, addresses, and phone numbers.
 end
 
 group :development do
