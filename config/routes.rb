@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "home#index"
 
+  namespace :players do
+    resource :profile, only: [:edit, :update], controller: 'profiles'
+  end
+
   # TODO : to complete template
   get   '404',                              to: 'errors#not_found',               as: 'not_found'
   get   '503',                              to: 'errors#forbidden',               as: 'forbidden'
