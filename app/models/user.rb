@@ -1,12 +1,24 @@
 class User < ApplicationRecord
+  # == Extensions ===========================================================
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  :recoverable, :rememberable, :validatable
 
-  GENDER = [ 'male', 'female', 'non_binary', 'other' ]
-  enum gender: Hash[GENDER.map { |c| [c, c.to_s] }]
+  # == Constants ============================================================
 
-  validates :age, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, on: :update
-  validates :gender, presence: true, on: :update
+  # == Attributes ===========================================================
+
+  # == Callbacks ============================================================
+
+  # == Relationships ========================================================
+
+  # == Validations ==========================================================
+
+  # == Scopes ===============================================================
+
+  # == Instance Methods =====================================================
+
+  # == Class Methods ========================================================
+
 end
