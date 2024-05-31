@@ -13,8 +13,8 @@ class Player < ApplicationRecord
   belongs_to :user
 
   # == Validations ==========================================================
-  validates :age, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, presence: { message: "must be given please" }, on: :update
-  validates :gender, presence: { message: "must be given please" }, on: :update
+  validates :age, numericality: { only_integer: true, greater_than_or_equal_to: 18 }, presence: { message: "must be given" }, on: :update
+  validates :gender, presence: { message: "must be given" }, on: :update
 
   # == Scopes ===============================================================
 
