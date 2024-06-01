@@ -1,19 +1,20 @@
-class User < ApplicationRecord
+class Player < ApplicationRecord
   # == Extensions ===========================================================
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :validatable
 
   # == Constants ============================================================
+  GENDER = [ 'male', 'female', 'non_binary', 'other' ]
 
   # == Attributes ===========================================================
+  enum gender: Hash[GENDER.map { |c| [c, c.to_s] }]
 
   # == Callbacks ============================================================
 
   # == Relationships ========================================================
+  belongs_to :user
 
   # == Validations ==========================================================
+  validates :age, numericality: { only_integer: true, greater_than_or_equal_to: 18 }, presence: { message: "must be given" }, on: :update
+  validates :gender, presence: { message: "must be given" }, on: :update
 
   # == Scopes ===============================================================
 

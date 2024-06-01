@@ -1,0 +1,14 @@
+<%= simple_form_for @player, url: players_profile_path, method: :put, html: { novalidate: true }, data: { turbo: false } do |f| %>
+
+  <div class="row">
+    <div>
+      <%= f.input :last_name %>
+      <%= f.input :first_name %>
+      <%= f.input :age, collection: 18..99, prompt: "Select your age" %>
+      <%= f.label :gender %><br />
+      <%= f.select :gender, options_for_select(Player::GENDER.map { |gender| [gender.humanize, gender] }), prompt: "Select Gender" %>
+    </div>
+  </div>
+
+  <%= f.button :submit, 'save' %>
+<% end %>
