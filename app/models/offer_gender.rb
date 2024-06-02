@@ -1,4 +1,4 @@
-class Offer < ApplicationRecord
+class OfferGender < ApplicationRecord
   # == Extensions ===========================================================
 
   # == Constants ============================================================
@@ -8,16 +8,10 @@ class Offer < ApplicationRecord
   # == Callbacks ============================================================
 
   # == Relationships ========================================================
-  has_many :offer_age_groups
-  has_many :age_groups, through: :offer_age_groups
-
-  has_many :offer_genders
-  has_many :genders, through: :offer_genders
+  belongs_to :offer
+  belongs_to :gender
 
   # == Validations ==========================================================
-  validates :title, presence: true
-  validates :description, presence: true
-  validates :score_to_achieve, presence: true
 
   # == Scopes ===============================================================
 

@@ -1,4 +1,4 @@
-class Offer < ApplicationRecord
+class Gender < ApplicationRecord
   # == Extensions ===========================================================
 
   # == Constants ============================================================
@@ -6,22 +6,23 @@ class Offer < ApplicationRecord
   # == Attributes ===========================================================
 
   # == Callbacks ============================================================
+  # before_save :generate_slug
 
   # == Relationships ========================================================
-  has_many :offer_age_groups
-  has_many :age_groups, through: :offer_age_groups
-
   has_many :offer_genders
-  has_many :genders, through: :offer_genders
+  has_many :offers, through: :offer_genders
 
   # == Validations ==========================================================
-  validates :title, presence: true
-  validates :description, presence: true
-  validates :score_to_achieve, presence: true
+  validates :name, presence: true
+  validates :slug, presence: true
 
   # == Scopes ===============================================================
 
   # == Instance Methods =====================================================
 
   # == Class Methods ========================================================
+  private
+    def generate_slug
+      self.slug = name
+    end
 end

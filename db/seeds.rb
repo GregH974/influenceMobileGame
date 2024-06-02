@@ -7,32 +7,19 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 # Empty base seeds and reseed
-mandatory_content = [
+table_to_seed = [
+  :genders,
+  :age_groups,
   :offers,
 ]
 connection = ActiveRecord::Base.connection
 
-puts "Resetting mandatory content"
-mandatory_content.each do |table|
+puts "Resetting table content"
+table_to_seed.each do |table|
   connection.execute("DELETE FROM #{table}")
   connection.execute("ALTER SEQUENCE #{table}_id_seq RESTART WITH 1")
 end
 
-puts "Offers"
-group_age = Offer::GROUP_AGE
-genders = Player::GENDER << 'all'
-
-genders.each do |gender|
-  group_age.each do |age|
-  50.times { |i|
-    Offer.create({
-      title: Faker::Lorem.word,
-      description: Faker::Marketing.buzzwords,
-      score_to_achieve: (i+1) * 100,
-      min_age: age.first,
-      max_age: age.last,
-      gender: gender
-    })
-  }
-  end
+table_to_seed.each do |table|
+  require_relative "seed_models/#{table}.rb"
 end
