@@ -23,27 +23,24 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_02_045848) do
 
   create_table "genders", force: :cascade do |t|
     t.string "name"
-    t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "offer_age_groups", force: :cascade do |t|
+  create_table "offer_age_groups", id: false, force: :cascade do |t|
     t.bigint "offer_id", null: false
     t.bigint "age_group_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["age_group_id"], name: "index_offer_age_groups_on_age_group_id"
-    t.index ["offer_id"], name: "index_offer_age_groups_on_offer_id"
+    t.index ["offer_id", "age_group_id"], name: "index_offer_age_groups_on_offer_id_and_age_group_id", unique: true
   end
 
-  create_table "offer_genders", force: :cascade do |t|
+  create_table "offer_genders", id: false, force: :cascade do |t|
     t.bigint "offer_id", null: false
     t.bigint "gender_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["gender_id"], name: "index_offer_genders_on_gender_id"
-    t.index ["offer_id"], name: "index_offer_genders_on_offer_id"
+    t.index ["offer_id", "gender_id"], name: "index_offer_genders_on_offer_id_and_gender_id", unique: true
   end
 
   create_table "offers", force: :cascade do |t|

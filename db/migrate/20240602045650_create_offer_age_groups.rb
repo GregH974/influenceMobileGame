@@ -1,9 +1,7 @@
 class CreateOfferAgeGroups < ActiveRecord::Migration[7.0]
   def change
-    create_table :offer_age_groups do |t|
-      t.references :offer, null: false
-      t.references :age_group, null: false
-
+    create_join_table :offers, :age_groups, table_name: :offer_age_groups do |t|
+      t.index [:offer_id, :age_group_id], unique: true
       t.timestamps
     end
 

@@ -1,9 +1,7 @@
 class CreateOfferGenders < ActiveRecord::Migration[7.0]
   def change
-    create_table :offer_genders do |t|
-      t.references :offer, null: false
-      t.references :gender, null: false
-
+    create_join_table :offers, :genders, table_name: :offer_genders do |t|
+      t.index [:offer_id, :gender_id], unique: true
       t.timestamps
     end
 
