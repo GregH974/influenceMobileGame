@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :gender do
-    name { "MyString" }
+    name { "M" }
   end
 end
