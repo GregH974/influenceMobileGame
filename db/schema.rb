@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_02_045848) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_03_043919) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_02_045848) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["offer_id", "gender_id"], name: "index_offer_genders_on_offer_id_and_gender_id", unique: true
+  end
+
+  create_table "offer_players", id: false, force: :cascade do |t|
+    t.bigint "offer_id", null: false
+    t.bigint "player_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["offer_id", "player_id"], name: "index_offer_players_on_offer_id_and_player_id", unique: true
   end
 
   create_table "offers", force: :cascade do |t|
@@ -80,6 +88,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_02_045848) do
   add_foreign_key "offer_age_groups", "offers", name: "fk_offer_age_groups_offers", on_update: :cascade, on_delete: :cascade
   add_foreign_key "offer_genders", "genders", name: "fk_offer_genders_genders", on_update: :cascade, on_delete: :cascade
   add_foreign_key "offer_genders", "offers", name: "fk_offer_genders_offers", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "offer_players", "offers", name: "fk_offer_players_offers", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "offer_players", "players", name: "fk_offer_players_players", on_update: :cascade, on_delete: :cascade
   add_foreign_key "players", "genders"
   add_foreign_key "players", "users", name: "fk_players_user_id", on_update: :cascade, on_delete: :cascade
 end
