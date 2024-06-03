@@ -1,25 +1,24 @@
-class User < ApplicationRecord
+class Gender < ApplicationRecord
   # == Extensions ===========================================================
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :validatable
 
   # == Constants ============================================================
 
   # == Attributes ===========================================================
 
   # == Callbacks ============================================================
+  # before_save :generate_slug
 
   # == Relationships ========================================================
+  has_many :offer_genders
+  has_many :offers, through: :offer_genders
   has_many :players
 
   # == Validations ==========================================================
+  validates :name, presence: true
 
   # == Scopes ===============================================================
 
   # == Instance Methods =====================================================
 
   # == Class Methods ========================================================
-
 end

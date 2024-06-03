@@ -2,13 +2,14 @@ require 'rails_helper'
 
 RSpec.describe Player, type: :model do
   describe "#profile" do
+    let(:gender) { FactoryBot.create(:gender) }
     let(:user) { FactoryBot.create(:user) }
     let(:valid_attributes) do
       {
         first_name: 'John',
         last_name: 'Doe',
         age: 25,
-        gender: 'male',
+        gender: gender,
         user: user
       }
     end
@@ -37,7 +38,7 @@ RSpec.describe Player, type: :model do
 
     context "with missing gender" do
       it "return false" do
-        player.gender = nil
+        player.gender_id = nil
         expect(player).not_to be_valid(:update)
       end
     end

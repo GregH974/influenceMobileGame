@@ -1,0 +1,16 @@
+<h1>Your available offers</h1>
+
+
+<% if @claim_offers.present? %>
+  <h3>Your claims</h3>
+  <% @claim_offers.each do |offer| %>
+    <div><%= offer.description%></div>
+  <% end %>
+<% end %>
+
+<% if @offers.present? %>
+  <h3>Offers just for you</h3>
+  <% @offers.each do |offer| %>
+    <div><%= offer.description%></div>
+  <% end %>
+<% end %>

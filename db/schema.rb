@@ -10,18 +10,64 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_31_145835) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_03_043919) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "age_groups", force: :cascade do |t|
+    t.integer "min_age", null: false
+    t.integer "max_age", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genders", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "offer_age_groups", id: false, force: :cascade do |t|
+    t.bigint "offer_id", null: false
+    t.bigint "age_group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["offer_id", "age_group_id"], name: "index_offer_age_groups_on_offer_id_and_age_group_id", unique: true
+  end
+
+  create_table "offer_genders", id: false, force: :cascade do |t|
+    t.bigint "offer_id", null: false
+    t.bigint "gender_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["offer_id", "gender_id"], name: "index_offer_genders_on_offer_id_and_gender_id", unique: true
+  end
+
+  create_table "offer_players", id: false, force: :cascade do |t|
+    t.bigint "offer_id", null: false
+    t.bigint "player_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["offer_id", "player_id"], name: "index_offer_players_on_offer_id_and_player_id", unique: true
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "score_to_achieve"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "players", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.integer "age"
-    t.string "gender"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "gender_id"
+    t.index ["gender_id"], name: "index_players_on_gender_id"
     t.index ["user_id"], name: "index_players_on_user_id"
   end
 
@@ -38,5 +84,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_31_145835) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "players", "users"
+  add_foreign_key "offer_age_groups", "age_groups", name: "fk_offer_age_groups_age_groups", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "offer_age_groups", "offers", name: "fk_offer_age_groups_offers", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "offer_genders", "genders", name: "fk_offer_genders_genders", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "offer_genders", "offers", name: "fk_offer_genders_offers", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "offer_players", "offers", name: "fk_offer_players_offers", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "offer_players", "players", name: "fk_offer_players_players", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "players", "genders"
+  add_foreign_key "players", "users", name: "fk_players_user_id", on_update: :cascade, on_delete: :cascade
 end

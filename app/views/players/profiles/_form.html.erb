@@ -6,7 +6,7 @@
       <%= f.input :first_name %>
       <%= f.input :age, collection: 18..99, prompt: "Select your age" %>
       <%= f.label :gender %><br />
-      <%= f.select :gender, options_for_select(Player::GENDER.map { |gender| [gender.humanize, gender] }), prompt: "Select Gender" %>
+      <%= f.collection_select :gender_id, @genders, :id, :name, { prompt: "Select Gender" }, { class: "form-control" } %>
     </div>
   </div>
 

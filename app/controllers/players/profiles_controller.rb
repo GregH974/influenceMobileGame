@@ -1,9 +1,13 @@
 module Players
   class ProfilesController < BaseController
+    before_action :find_or_initialize_player
+
     def edit
+      @genders = Gender.all
     end
 
     def update
+      @genders = Gender.all
       if @player.update(player_params)
         flash[:success] = 'Your profile has been updated successfully.'
         redirect_to edit_players_profile_path
@@ -14,8 +18,12 @@ module Players
     end
 
     private
+      def find_or_initialize_player
+        @player = Player.find_or_initialize_by(user_id: current_user.id)
+      end
+
       def player_params
-        params.require(:player).permit(:last_name, :first_name, :age, :gender)
+        params.require(:player).permit(:last_name, :first_name, :age, :gender_id)
       end
   end
 end

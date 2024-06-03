@@ -1,9 +1,5 @@
-class User < ApplicationRecord
+class OfferAgeGroup < ApplicationRecord
   # == Extensions ===========================================================
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :validatable
 
   # == Constants ============================================================
 
@@ -12,7 +8,8 @@ class User < ApplicationRecord
   # == Callbacks ============================================================
 
   # == Relationships ========================================================
-  has_many :players
+  belongs_to :offer
+  belongs_to :age_group
 
   # == Validations ==========================================================
 
@@ -21,5 +18,4 @@ class User < ApplicationRecord
   # == Instance Methods =====================================================
 
   # == Class Methods ========================================================
-
 end
