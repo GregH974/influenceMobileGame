@@ -6,7 +6,11 @@ Rails.application.routes.draw do
 
   namespace :players do
     resource :profile, only: [:edit, :update], controller: 'profiles'
-    resource :offer, only: [:edit, :update], controller: 'offers'
+    resource :offer, only: [:edit], controller: 'offers' do
+      member do
+        post :claim, to: 'offers#claim'
+      end
+    end
   end
 
   # TODO : to complete template
