@@ -13,3 +13,31 @@
  *= require_tree .
  *= require_self
  */
+
+.green {
+  border-color: green;
+  color: green;
+}
+
+.red {
+  border-color: red;
+  color: red;
+}
+
+.claim-offer-player {
+  border: 2px solid #fff;
+  padding: 15px;
+  margin: 10px 0;
+  display: block;
+  border-radius: 5px;
+}
+
+.claim-offer-player .claim-button {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.claim-offer-player .claim-info-point {
+  text-align: right;
+}
