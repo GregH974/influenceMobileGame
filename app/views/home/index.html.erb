@@ -1,13 +1,3 @@
-<% if user_signed_in? %>
-  <h1>Welcome Home, <%= current_user.email %></h1>
-  <%= link_to 'Account', edit_user_registration_path %>
-  <%= link_to 'Profile', edit_players_profile_path %>
-  <%= link_to 'Offers', edit_players_offer_path %>
-  <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete } %>
-<% else %>
-  <h1>Home</h1>
-  <%= link_to 'Sign in', new_user_session_path %>
-<% end %>
-
+<h1>Home</h1>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rutrum ultrices venenatis. Donec ornare metus et nisi auctor, vitae rutrum orci molestie. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer euismod nisi et dui laoreet, in gravida quam ullamcorper. Curabitur et gravida tellus. Vivamus porta lectus nec ultrices porta. Curabitur accumsan mauris lorem, eget consectetur risus porttitor nec.</p>
 
