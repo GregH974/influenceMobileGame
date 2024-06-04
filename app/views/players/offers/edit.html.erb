@@ -15,10 +15,11 @@
     <h3>Offers just for you</h3>
     <% @offers.each do |offer| %>
        <div class="claim-offer-player" id="offer_<%= offer.id %>">
-        <% if 1000 >= offer.score_to_achieve %>
+        <% if @total_score >= offer.score_to_achieve %>
           <%= button_to 'Claim', claim_players_offer_path(offer), method: :post, class: 'claim-button', data: { turbo_frame: "_top" } %>
         <% else %>
-          <p class="claim-info-point">Points needed : <%= offer.score_to_achieve %></p>
+          <p class="claim-info-point">Points needed : <%= @total_score %>/<%= offer.score_to_achieve %></p>
+          <%= render partial: "shared/progress_bar", locals: {player_score: @total_score, score_to_achieve: offer.score_to_achieve, progress: (@total_score*100 /offer.score_to_achieve)}%>
         <% end %>
         <p><%= offer.description %></p>
       </div>

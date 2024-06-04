@@ -1,3 +1,12 @@
 <h1>Home</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rutrum ultrices venenatis. Donec ornare metus et nisi auctor, vitae rutrum orci molestie. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer euismod nisi et dui laoreet, in gravida quam ullamcorper. Curabitur et gravida tellus. Vivamus porta lectus nec ultrices porta. Curabitur accumsan mauris lorem, eget consectetur risus porttitor nec.</p>
+<div>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rutrum ultrices venenatis. Donec ornare metus et nisi auctor, vitae rutrum orci molestie. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer euismod nisi et dui laoreet, in gravida quam ullamcorper. Curabitur et gravida tellus. Vivamus porta lectus nec ultrices porta. Curabitur accumsan mauris lorem, eget consectetur risus porttitor nec.</p>
+<div>
 
+<% if @games.present? %>
+  <div>
+  <% @games.each do |game| %>
+    <%= game.name %>
+  <% end %>
+  <div>
+<% end %>

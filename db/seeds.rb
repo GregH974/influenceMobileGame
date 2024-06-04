@@ -12,6 +12,8 @@ table_to_seed = [
   :age_groups,
   :offers,
   :players,
+  :games,
+  :player_gaming_logs,
 ]
 
 table_to_clear = [
@@ -20,6 +22,8 @@ table_to_clear = [
   :age_groups,
   :offers,
   :users,
+  :player_gaming_logs,
+  :games,
 ]
 
 connection = ActiveRecord::Base.connection
