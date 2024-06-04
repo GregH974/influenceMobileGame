@@ -1,13 +1,25 @@
-<% if user_signed_in? %>
-  <h1>Welcome Home, <%= current_user.email %></h1>
-  <%= link_to 'Account', edit_user_registration_path %>
-  <%= link_to 'Profile', edit_players_profile_path %>
-  <%= link_to 'Offers', edit_players_offer_path %>
-  <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete } %>
-<% else %>
-  <%= link_to 'Sign Up', new_user_registration_path %>
-  <%= link_to 'Log in', new_user_session_path %>
-<% end %>
 
+<p data-controller="hello">This text will change!!!!</p>
 
+  <div
+    data-controller="toggle"
+    class="my-4 border"
+    data-toggle-initial-active-value="true"
+    data-toggle-class-value="hidden">
+    <span data-action="click->toggle#toggle" class="font-bold"><%= (current_user.present? ? current_user.email : 'Connection' ) %></span
+    >
 
+    <% if user_signed_in? %>
+      <ul data-toggle-target="content" class="font-bold">
+        <li><%= link_to 'Account', edit_user_registration_path %></li>
+        <li><%= link_to 'Profile', edit_players_profile_path %></li>
+        <li><%= link_to 'Offers', edit_players_offer_path %></li>
+        <li><%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete } %></li>
+      </ul>
+    <% else %>
+      <ul data-toggle-target="content">
+        <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+        <li><%= link_to 'Log in', new_user_session_path %></li>
+      </ul>
+    <% end %>
+  </div>
