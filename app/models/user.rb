@@ -10,6 +10,7 @@ class User < ApplicationRecord
   # == Attributes ===========================================================
 
   # == Callbacks ============================================================
+  after_create :send_user_welcome_mail
 
   # == Relationships ========================================================
   has_many :players
@@ -21,5 +22,7 @@ class User < ApplicationRecord
   # == Instance Methods =====================================================
 
   # == Class Methods ========================================================
-
+  def send_user_welcome_mail
+    UserMailer.with(user: self).welcome_email.deliver_now
+  end
 end

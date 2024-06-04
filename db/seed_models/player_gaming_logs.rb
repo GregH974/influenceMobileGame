@@ -1,4 +1,4 @@
-players = Player.all.limit(4)
+players = Player.all.limit(5)
 games = Game.all.limit(20)
 log = {
   "name": "Game 123",
