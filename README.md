@@ -1,24 +1,52 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Assement project to validate my skills in ruby on rails.
 
 Things you may want to cover:
 
-* Ruby version
 
-* System dependencies
+* Ruby version
+    - 3.2.1
 
 * Configuration
+    - docker desktop with WSL2 on windows 11
 
-* Database creation
 
-* Database initialization
+# Installation
 
-* How to run the test suite
+Build project
+```bash
+docker compose build
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Start project
+```bash
+docker compose up
+```
+### Database
+- creation
+    ```bash
+    docker compose run --rm app rails db:create
+    ```
 
-* Deployment instructions
+* initialization
+    ```bash
+    docker compose run --rm app rails db:migrate
+    ```
 
-* ...
+* seeds
+    ```bash
+    docker compose run --rm app rails db:seed
+    ```
+
+* tests
+
+    Run the migration before
+    ```bash
+    docker compose run --rm app rails db:migrate RAILS_ENV=test
+    ```
+    Run test
+    ```bash
+    docker compose run --rm app rails spec
+    ```
+
