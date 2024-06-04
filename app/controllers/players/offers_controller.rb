@@ -3,11 +3,13 @@ module Players
     def edit
       @offers = nil
       @claim_offers = nil
+      @total_scores = 0
       player = Player.find_by(user_id: current_user.id)
 
       if player.present?
         @claim_offers = player.offers
         @offers = player.targeted_offers - @claim_offers
+        @total_score = PlayerGamingLog.total_score(player.id)
       end
     end
 
