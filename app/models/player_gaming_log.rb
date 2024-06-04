@@ -1,4 +1,4 @@
-class Player < ApplicationRecord
+class PlayerGamingLog < ApplicationRecord
   # == Extensions ===========================================================
 
   # == Constants ============================================================
@@ -8,26 +8,25 @@ class Player < ApplicationRecord
   # == Callbacks ============================================================
 
   # == Relationships ========================================================
-  belongs_to :user
-  belongs_to :gender
-  has_many :player_gaming_logs
-  has_many :offer_players
-  has_many :offers, through: :offer_players
+  belongs_to :player
+  belongs_to :game
 
   # == Validations ==========================================================
-  validates :age, presence: true, numericality: { only_integer: true }, comparison: { greater_than: 18 }
-  validates :gender_id, presence: true
 
   # == Scopes ===============================================================
 
   # == Instance Methods =====================================================
+  def self.total_score(player_id)
+    return 0 if !player_id.present?
+
+    score = select("player_id, SUM((log->>'score')::int) AS total_score")
+      .where(player_id: player_id)
+      .group(:player_id)
+      .map { |log| { player_id: log.player_id, total_score: log.total_score.to_i } }
+
+    return score.first[:total_score]
+  end
 
   # == Class Methods ========================================================
-
-  def targeted_offers
-    age_group = AgeGroup.find_by('min_age <= ? AND max_age >= ?', self.age, self.age)
-
-    return Offer.includes(:offer_age_groups).includes(:offer_genders).where(offer_age_groups: {age_group: age_group}).where(offer_genders: {gender: self.gender})
-  end
 
 end

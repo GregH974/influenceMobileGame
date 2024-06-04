@@ -10,13 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_03_043919) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_04_124445) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "age_groups", force: :cascade do |t|
     t.integer "min_age", null: false
     t.integer "max_age", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -59,6 +65,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_03_043919) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "player_gaming_logs", force: :cascade do |t|
+    t.bigint "player_id", null: false
+    t.bigint "game_id", null: false
+    t.jsonb "log"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_player_gaming_logs_on_game_id"
+    t.index ["player_id"], name: "index_player_gaming_logs_on_player_id"
+  end
+
   create_table "players", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -90,6 +106,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_03_043919) do
   add_foreign_key "offer_genders", "offers", name: "fk_offer_genders_offers", on_update: :cascade, on_delete: :cascade
   add_foreign_key "offer_players", "offers", name: "fk_offer_players_offers", on_update: :cascade, on_delete: :cascade
   add_foreign_key "offer_players", "players", name: "fk_offer_players_players", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "player_gaming_logs", "games", name: "fk_player_gaming_logs_game_id", on_update: :cascade, on_delete: :nullify
+  add_foreign_key "player_gaming_logs", "players", name: "fk_player_gaming_logs_player_id", on_update: :cascade, on_delete: :cascade
   add_foreign_key "players", "genders"
   add_foreign_key "players", "users", name: "fk_players_user_id", on_update: :cascade, on_delete: :cascade
 end
