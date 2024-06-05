@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :players
 
   # == Validations ==========================================================
+  validates :email, format: URI::MailTo::EMAIL_REGEXP
 
   # == Scopes ===============================================================
 

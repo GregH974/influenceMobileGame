@@ -12,17 +12,17 @@
   </head>
 
   <body>
+    <div class="container">
+      <%= render 'shared/main_navigation'%>
 
-    <%= render 'shared/main_navigation'%>
+      <% if notice.present? %>
+        <p class="notice green"><%= notice %></p>
+      <% end %>
+      <% if alert.present? %>
+        <p class="alert red"><%= alert %></p>
+      <% end %>
 
-    <% if notice.present? %>
-      <p class="notice green"><%= notice %></p>
-    <% end %>
-    <% if alert.present? %>
-      <p class="alert red"><%= alert %></p>
-    <% end %>
-
-    <%= yield %>
-
+      <%= yield %>
+    </div>
   </body>
 </html>
