@@ -8,6 +8,7 @@ class User < ApplicationRecord
   # == Constants ============================================================
 
   # == Attributes ===========================================================
+  enum role: %i[player admin]
 
   # == Callbacks ============================================================
   after_create :send_user_welcome_mail

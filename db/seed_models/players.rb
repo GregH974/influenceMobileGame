@@ -6,6 +6,7 @@ genders = Gender.all
     email: "player#{i}@example.com",
     password: "password",
     password_confirmation: "password",
+    role: User.roles[:player]
   )
   Player.find_or_create_by(user: user,first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, age: rand(18..65), gender_id: genders.sample.id)
 end
@@ -22,4 +23,5 @@ players.each do |player|
   end
 end
 players = age_group = offers = nil
+
 puts "Players and users added"
