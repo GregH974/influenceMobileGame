@@ -24,6 +24,7 @@ class PlayerGamingLog < ApplicationRecord
       .group(:player_id)
       .map { |log| { player_id: log.player_id, total_score: log.total_score.to_i } }
 
+    return 0 if !score.present?
     return score.first[:total_score]
   end
 

@@ -49,4 +49,17 @@ docker compose up
     ```bash
     docker compose run --rm app rails spec
     ```
+## Emails
 
+Open a new tab of your favourite browser to receive emails:
+[letter opener](http://localhost:3000/letter_opener)
+
+## Assets
+
+Note : if any error with assets flush them and recompile
+
+ ```bash
+docker compose run --rm app rails assets:clobber # Remove compiled assets
+docker compose run --rm app rails assets:precompile
+docker compose run --rm app rails restart
+```
