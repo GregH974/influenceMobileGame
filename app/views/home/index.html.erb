@@ -10,3 +10,7 @@
   <% end %>
   <div>
 <% end %>
+
+<div id="root" data-controller="react"></div>
+<%= content_tag(:div, "test", id: "root", data:{
+  controller: "react"}) %>
