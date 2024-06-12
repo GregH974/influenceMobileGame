@@ -12,8 +12,8 @@ class AgeGroup < ApplicationRecord
   has_many :offers, through: :offer_age_groups
 
   # == Validations ==========================================================
-  validates :min_age, presence: true
-  validates :max_age, presence: true
+  validates :min_age, presence: true, numericality: { other_than: 0 }
+  validates :max_age, presence: true,  comparison: { greater_than: :min_age }
 
   # == Scopes ===============================================================
 

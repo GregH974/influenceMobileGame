@@ -14,9 +14,9 @@ RSpec.describe Player, type: :model do
       }
     end
 
-    let(:player) { Player.create!(valid_attributes) }
+    let(:player) { described_class.create!(valid_attributes) }
 
-    context 'filled with mandatory fields' do
+    context 'when filled with mandatory fields' do
       it 'return true' do
         expect(player).to be_valid
       end
