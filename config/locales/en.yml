@@ -30,4 +30,11 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  player_offer:
+    claim: 'Offer claimed successfully.'
+    can_not_claim: 'You can not claim this offer.'
+  profile:
+    update:
+      success: 'Your profile has been updated successfully.'
+  email:
+    welcome: 'Welcome to assements test site'

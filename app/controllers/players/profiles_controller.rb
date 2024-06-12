@@ -9,7 +9,7 @@ module Players
     def update
       @genders = Gender.all
       if @player.update(player_params)
-        flash[:success] = 'Your profile has been updated successfully.'
+        flash[:success] = I18n.t('profile.update.success')
         redirect_to edit_players_profile_path
       else
         flash[:error] = @player.errors.full_messages.to_sentence
@@ -18,6 +18,7 @@ module Players
     end
 
     private
+
       def find_or_initialize_player
         @player = Player.find_or_initialize_by(user_id: current_user.id)
       end
