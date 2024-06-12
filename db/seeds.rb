@@ -7,28 +7,31 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 # Empty base seeds and reseed
-table_to_seed = [
-  :genders,
-  :age_groups,
-  :offers,
-  :players,
-  :games,
-  :player_gaming_logs,
+table_to_seed = %i[
+  genders
+  age_groups
+  offers
+  players
+  games
+  player_gaming_logs
 ]
 
-table_to_clear = [
-  :players,
-  :genders,
-  :age_groups,
-  :offers,
-  :users,
-  :player_gaming_logs,
-  :games,
+table_to_clear = %i[
+  players
+  genders
+  age_groups
+  offers
+  users
+  player_gaming_logs
+  games
 ]
 
 connection = ActiveRecord::Base.connection
 
-puts "Resetting table content"
+message = 'Resetting table content'
+puts message if Rails.env.development?
+Rails.logger.debug message
+
 table_to_clear.each do |table|
   connection.execute("DELETE FROM #{table} CASCADE")
   connection.execute("ALTER SEQUENCE #{table}_id_seq RESTART WITH 1")

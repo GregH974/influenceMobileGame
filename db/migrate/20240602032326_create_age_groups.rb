@@ -1,3 +1,4 @@
+# Create age group table
 class CreateAgeGroups < ActiveRecord::Migration[7.0]
   def change
     create_table :age_groups do |t|

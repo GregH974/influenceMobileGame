@@ -1,7 +1,8 @@
+# Create association between offer and player tables
 class CreateOfferPlayers < ActiveRecord::Migration[7.0]
   def change
     create_join_table :offers, :players, table_name: :offer_players do |t|
-      t.index [:offer_id, :player_id], unique: true
+      t.index %i[offer_id player_id], unique: true
       t.timestamps
     end
 

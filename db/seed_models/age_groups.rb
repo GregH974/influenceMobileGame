@@ -4,10 +4,12 @@
   { min_age: 35, max_age: 44 },
   { min_age: 45, max_age: 54 },
   { min_age: 55, max_age: 64 },
-  { min_age: 65, max_age: 100 },
+  { min_age: 65, max_age: 100 }
 ].each do |age_data|
   age = AgeGroup.new(age_data)
   age.save!
 end
 
-puts "Age groups added"
+message = 'Age groups added'
+puts message if Rails.env.development?
+Rails.logger.debug message

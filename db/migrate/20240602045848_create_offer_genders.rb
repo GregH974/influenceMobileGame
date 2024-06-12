@@ -1,7 +1,8 @@
+# Create association between offer and gender tables
 class CreateOfferGenders < ActiveRecord::Migration[7.0]
   def change
     create_join_table :offers, :genders, table_name: :offer_genders do |t|
-      t.index [:offer_id, :gender_id], unique: true
+      t.index %i[offer_id gender_id], unique: true
       t.timestamps
     end
 

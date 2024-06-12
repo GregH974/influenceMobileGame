@@ -1,6 +1,9 @@
 (1..20).each do |i|
   Game.create({
-    name: "Game #{i}",
-  })
+                name: "Game #{i}"
+              })
 end
-puts "Games added"
+
+message = 'Games added'
+puts message if Rails.env.development?
+Rails.logger.debug message

@@ -1,12 +1,10 @@
-
-
-100.times { |i|
+100.times do |i|
   Offer.create({
-    title: Faker::Lorem.word,
-    description: Faker::Marketing.buzzwords,
-    score_to_achieve: (i+1) * 100,
-  })
-}
+                 title: Faker::Lorem.word,
+                 description: Faker::Marketing.buzzwords,
+                 score_to_achieve: (i + 1) * 100
+               })
+end
 offers = Offer.all
 
 # Set random offer age group
@@ -16,7 +14,7 @@ age_group_indices = (1..age_group_total).to_a
 
 age_groups.sample(age_group_indices.sample).each do |age_group|
   offers.sample(15).each do |offer|
-    OfferAgeGroup.find_or_create_by(offer: offer, age_group: age_group)
+    OfferAgeGroup.find_or_create_by(offer:, age_group:)
   end
 end
 
@@ -27,8 +25,10 @@ indices = (1..gender_total).to_a
 
 offers.each do |offer|
   genders.sample(indices.sample).each do |gender|
-    OfferGender.find_or_create_by(offer: offer, gender: gender)
+    OfferGender.find_or_create_by(offer:, gender:)
   end
 end
 
-puts "Offers added"
+message = 'Offers added'
+puts message if Rails.env.development?
+Rails.logger.debug message

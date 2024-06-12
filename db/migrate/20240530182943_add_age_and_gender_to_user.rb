@@ -1,3 +1,4 @@
+# Add age and gender fields
 class AddAgeAndGenderToUser < ActiveRecord::Migration[7.0]
   def change
     add_column :users, :age, :integer, after: :email, null: true

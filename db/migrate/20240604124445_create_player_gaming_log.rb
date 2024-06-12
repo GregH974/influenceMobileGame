@@ -1,3 +1,4 @@
+# Create player log table
 class CreatePlayerGamingLog < ActiveRecord::Migration[7.0]
   def change
     create_table :games do |t|
@@ -13,7 +14,9 @@ class CreatePlayerGamingLog < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    add_foreign_key :player_gaming_logs, :players, on_update: :cascade, name: :fk_player_gaming_logs_player_id, on_delete: :cascade
-    add_foreign_key :player_gaming_logs, :games, on_update: :cascade, name: :fk_player_gaming_logs_game_id, on_delete: :nullify
+    add_foreign_key :player_gaming_logs, :players, on_update: :cascade, name: :fk_player_gaming_logs_player_id,
+                                                   on_delete: :cascade
+    add_foreign_key :player_gaming_logs, :games, on_update: :cascade, name: :fk_player_gaming_logs_game_id,
+                                                 on_delete: :nullify
   end
 end
