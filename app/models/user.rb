@@ -3,12 +3,12 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable
 
   # == Constants ============================================================
 
   # == Attributes ===========================================================
-  enum role: %i[player admin]
+  enum role: { player: 0, admin: 1 }
 
   # == Callbacks ============================================================
   after_create :send_user_welcome_mail

@@ -4,8 +4,8 @@ class CreatePlayers < ActiveRecord::Migration[7.0]
     create_table :players do |t|
       t.string :first_name
       t.string :last_name
-      t.integer :age
-      t.string :gender
+      t.integer :age, null: false
+      t.string :gender, null: false
       t.references :user, null: false
 
       t.timestamps

@@ -78,11 +78,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_04_124445) do
   create_table "players", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.integer "age"
+    t.integer "age", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "gender_id"
+    t.bigint "gender_id", null: false
     t.index ["gender_id"], name: "index_players_on_gender_id"
     t.index ["user_id"], name: "index_players_on_user_id"
   end

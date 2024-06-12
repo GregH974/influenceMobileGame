@@ -8,6 +8,6 @@ class CreateGenders < ActiveRecord::Migration[7.0]
     end
 
     remove_column :players, :gender, :string
-    add_reference :players, :gender, foreign_key: true
+    add_reference :players, :gender, foreign_key: true, null: false
   end
 end

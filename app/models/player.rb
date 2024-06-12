@@ -16,7 +16,6 @@ class Player < ApplicationRecord
 
   # == Validations ==========================================================
   validates :age, presence: true, numericality: { only_integer: true }, comparison: { greater_than: 18 }
-  validates :gender_id, presence: true
 
   # == Scopes ===============================================================
 
@@ -25,9 +24,8 @@ class Player < ApplicationRecord
   # == Class Methods ========================================================
 
   def targeted_offers
-    age_group = AgeGroup.find_by('min_age <= ? AND max_age >= ?', self.age, self.age)
+    age_group = AgeGroup.find_by('min_age <= ? AND max_age >= ?', age, age)
 
-    return Offer.includes(:offer_age_groups).includes(:offer_genders).where(offer_age_groups: {age_group: age_group}).where(offer_genders: {gender: self.gender})
+    Offer.includes(:offer_age_groups).includes(:offer_genders).where(offer_age_groups: { age_group: }).where(offer_genders: { gender: })
   end
-
 end
