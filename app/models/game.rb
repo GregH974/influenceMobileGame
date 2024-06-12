@@ -10,7 +10,6 @@ class Game < ApplicationRecord
   # == Relationships ========================================================
   has_many :players
 
-
   # == Validations ==========================================================
   validates :name, presence: true
 
@@ -19,5 +18,4 @@ class Game < ApplicationRecord
   # == Instance Methods =====================================================
 
   # == Class Methods ========================================================
-
 end

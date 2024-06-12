@@ -14,7 +14,6 @@ class Offer < ApplicationRecord
   has_many :offer_genders
   has_many :genders, through: :offer_genders
 
-
   # == Validations ==========================================================
   validates :title, presence: true
   validates :description, presence: true
