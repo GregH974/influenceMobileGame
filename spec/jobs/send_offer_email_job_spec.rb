@@ -1,5 +1,6 @@
 RSpec.describe SendOfferEmailJob, type: :job do
-  let!(:player) { create(:player) }
+  let!(:gender) { FactoryBot.create(:gender, :man) }
+  let!(:player) { create(:player, gender:) }
   let!(:offer) { create(:offer) }
   let!(:offer_player) { create(:offer_player, offer:, player:, email_send: false) }
 

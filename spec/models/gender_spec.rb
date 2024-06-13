@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Gender, type: :model do
-  let(:gender) { FactoryBot.create(:gender) }
+  let(:gender) { FactoryBot.create(:gender, :man) }
 
   context 'when gender is valid' do
     it 'with name' do
