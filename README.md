@@ -63,3 +63,12 @@ docker compose run --rm app rails assets:clobber # Remove compiled assets
 docker compose run --rm app rails assets:precompile
 docker compose run --rm app rails restart
 ```
+
+## Rubocop
+```bash
+docker compose run --rm app rubocop --color -E --format clang --parallel
+```
+## Stats
+```bash
+docker compose run --rm app rails stats
+```
