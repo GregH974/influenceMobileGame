@@ -3,16 +3,16 @@ genders = Gender.all
 
 10.times do |i|
   user = User.create!(
-    email: "player#{i}@example.com",
-    password: 'password',
-    password_confirmation: 'password',
+    email: "player#{i+1}@example.com",
+    password: 'Pass123$',
+    password_confirmation: 'Pass123$',
     role: User.roles[:player]
   )
   Player.find_or_create_by(user:, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name,
                            age: rand(18..65), gender_id: genders.sample.id)
 end
 
-players = Player.limit(5)
+players = Player.all
 
 players.each do |player|
   age_group = AgeGroup.find_by('min_age <= ? AND max_age >= ?', player.age, player.age)

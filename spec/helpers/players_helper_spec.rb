@@ -11,5 +11,11 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe PlayersHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#player_full_name' do
+    let(:player) { build(:player, first_name: 'John', last_name: 'Doe') }
+
+    it 'returns the full name of the player' do
+      expect(helper.player_full_name(player)).to eq('John Doe')
+    end
+  end
 end
