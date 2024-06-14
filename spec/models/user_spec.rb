@@ -43,7 +43,7 @@ RSpec.describe User, type: :model do
       let!(:user) { FactoryBot.create(:user) }
 
       it "with an email already existing" do
-        current_user = User.first
+        current_user = described_class.first
         new_user = FactoryBot.build(:user, email: current_user.email)
         expect { new_user.save! }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Email has already been taken')
       end

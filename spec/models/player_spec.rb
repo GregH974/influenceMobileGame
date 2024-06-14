@@ -43,8 +43,7 @@ RSpec.describe Player, type: :model do
       end
     end
 
-
-    context '#targeted_offers' do
+    describe '#targeted_offers' do
       # let(:gender_man) { create(:gender) }
       # let(:gender_woman) { create(:gender) }
       let(:gender_man) { FactoryBot.create(:gender, :man) }
