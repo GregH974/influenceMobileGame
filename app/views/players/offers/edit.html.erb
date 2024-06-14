@@ -5,7 +5,14 @@
   <h3>Your claims</h3>
   <%= turbo_frame_tag "claim_offers" do %>
     <% @claim_offers.each do |offer| %>
-      <div><%= offer.description%></div>
+      <ul>
+        <li>
+          <% current_offer = offer.offer_players.find{|off| off.offer_id == offer.id} %>
+          <% if current_offer.email_send %>
+          <span class="offer-send">Send</span>
+          <% end %>
+        <%= offer.description%></li>
+      </ul>
     <% end %>
   <% end %>
 <% end %>
