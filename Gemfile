@@ -52,6 +52,8 @@ gem 'simple_form'
 
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '~> 4.9'
+# Composite Primary Keys for ActiveRecords
+gem 'composite_primary_keys'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

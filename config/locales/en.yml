@@ -37,4 +37,6 @@ en:
     update:
       success: 'Your profile has been updated successfully.'
   email:
-    welcome: 'Welcome to assements test site'
+    welcome: 'Welcome to influence game site'
+    offer:
+      title: 'Your special offer'

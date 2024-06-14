@@ -41,3 +41,14 @@
 .claim-offer-player .claim-info-point {
   text-align: right;
 }
+
+.offer-send {
+  border-radius: 25% 10%;
+  background: orange;
+  margin-left: auto;
+  margin-right: 3px;
+  text-align: center;
+  padding-left: 3px;
+  padding-right: 6px;
+  padding-bottom: 3px;
+}
